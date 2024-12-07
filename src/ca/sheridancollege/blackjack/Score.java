@@ -6,6 +6,7 @@
  */
 package ca.sheridancollege.blackjack;
 
+//Class to handle score tracking
 public class Score {
 
     private int totalRounds;
@@ -15,7 +16,7 @@ public class Score {
     private int winStreak;
     private int blackjacks;
 
-    // Constructor
+    //Constructor
     public Score() {
         totalRounds = 0;
         wins = 0;
@@ -25,38 +26,36 @@ public class Score {
         blackjacks = 0;
     }
 
-    // Method to increase total rounds
+    //Increase total rounds
     public void incrementRounds() {
         totalRounds++;
     }
 
-    // Method to handle player Blackjack
+    //Increments when player gets a blackjack
     public void addBlackjack() {
         blackjacks++;
     }
 
-    // Method to increase win count and win streak
+    //Increments win count and win streak
     public void addWin() {
         wins++;
         winStreak++;
     }
 
-    // Method to handle a tie
     public void addTie() {
         ties++;
-        winStreak = 0;  // Reset win streak after a tie
+        winStreak = 0;  //Reset win streak after a tie
     }
 
-    // Method to increase loss count and reset win streak
     public void addLoss() {
         losses++;
-        winStreak = 0;  // Reset win streak after a loss
+        winStreak = 0;  //Reset win streak after a loss
     }
 
-    // Method to calculate win/loss ratio
+    //Calculate win/loss ratio
     public double calculateWinLossRatio() {
         double ratio = (losses == 0) ? wins : (double) wins / losses;
-        return Math.round(ratio * 100.0) / 100.0;  // Round to 2 decimal places
+        return Math.round(ratio * 100.0) / 100.0;  //Round to 2 decimal places
     }
 
     // Display score details

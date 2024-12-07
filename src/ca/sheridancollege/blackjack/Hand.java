@@ -12,10 +12,12 @@ public class Hand {
 
     private ArrayList<Card> hand = new ArrayList<>();
 
+    //Takes card from deck and adds to hand
     public void takeCardFromDeck(Deck deck) {
         hand.add(deck.takeCard());
     }
 
+    //String to output cards in hand
     @Override
     public String toString() {
         String output = "";
@@ -25,66 +27,37 @@ public class Hand {
         return output;
     }
 
+    //Calculates value of cards in hand
     public int calculatedValue() {
         int totalValue = 0;
         int aceCount = 0;
 
         // Sum card values and count Aces
         for (Card card : hand) {
-            if (card.getValue() == Card.Value.ACE) { // Assuming Ace has value 11 by default
+            if (card.getValue() == Card.Value.ACE) {
                 aceCount++;
                 totalValue += 11; // Initially count Ace as 11
             } else {
-                totalValue += card.getValue().getCardValue(); // Add card value
+                totalValue += card.getValue().getCardValue();
             }
         }
 
-        // Adjust for Aces if totalValue exceeds 21
+        // Adjust aces to be value of 1 if hand value exceeds 21
         while (totalValue > 21 && aceCount > 0) {
-            totalValue -= 10; // Change an Ace from 11 to 1
+            totalValue -= 10;
             aceCount--;
         }
 
         return totalValue;
     }
 
-//    public int calculatedValue() {
-//
-//        //variable to count number of aces, and current total value
-//        int value = 0;
-//        int aceCount = 0;
-//
-//        //For each card in this hand
-//        for (Card card : hand) {
-//            //Add the card value to the hand
-//            value += card.getValue().getCardValue();
-//            //Count how many aces have been added
-//            if (card.getValue() == Card.Value.ACE) {
-//                aceCount++;
-//            }
-//        }
-//        //if we have a scenario where we have multiple aces, as may be the case of drawing 10, followed by two or more aces, (10+11+1 > 21)
-//        //go back and set each ace to 1 until get back under 21, if possible
-//        if (value > 21 && aceCount > 0) {
-//            while (aceCount > 0 && value > 21) {
-//                value -= 10;
-//                aceCount--;
-//            }
-//        }
-//        return value;
-//
-//    }
-    public Card getCard(int idx) {
-        return hand.get(idx);
+    public Card getCard(int extraCard) {
+        return hand.get(extraCard);
     }
 
+    //Discard hand
     public void discardHandToDeck(Deck discardDeck) {
-
-        //copy cards from hand to discardDeck
         discardDeck.addCards(hand);
-
-        //clear the hand
         hand.clear();
-
     }
 }

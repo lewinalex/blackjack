@@ -6,24 +6,19 @@ Availability: https://kevinsguides.com/guides/code/java/javaprojs/consoleblackja
  */
 package ca.sheridancollege.blackjack;
 
-/**
- * A class that models each Participant in the game. Participants have an identifier, which should be unique.
- *
- * @author dancye, 2018
- */
 import java.util.Scanner;
 
+//Extends from participant as that is an abstract class
 public class Player extends Participant {
 
-    private static final Scanner input = new Scanner(System.in); // Declare input scanner
+    private static final Scanner input = new Scanner(System.in);
 
     //Create a new Player
     public Player() {
-
         super.setName("Player");
-
     }
 
+    //Controls the players choices during their turn
     public void makeDecision(Deck deck, Deck discard) {
 
         int decision = 0;
@@ -35,33 +30,30 @@ public class Player extends Participant {
             try {
                 decision = input.nextInt();
 
-                // Check if input is 1 or 2, if not, print an error and ask again
+                // Check if input is 1 or 2. If neither, print an error and ask again
                 if (decision == 1 || decision == 2) {
-                    getNum = false;  // Valid input, exit the loop
+                    getNum = false;
                 } else {
                     System.out.println("Invalid input. Please enter 1 to Hit or 2 to Stand.");
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input. Please enter 1 to Hit or 2 to Stand.");
-                input.next();  // Clear the invalid input
+                input.next();
             }
-            //we don't close the scanner, because we will need it later.
         }
 
-        //if they decide to hit
+        //If hit is chosen
         if (decision == 1) {
-            //hit the deck using the deck and discard deck
             this.hit(deck, discard);
-            //return (exit the method) if they have blackjack or busted
             if (this.getHand().calculatedValue() > 20) {
                 return;
-            } //if they didnt bust or get 21, allow them to decide to hit or stand again by going back to this same method
+            }
             else {
                 this.makeDecision(deck, discard);
             }
-
-            //if they type any number other than 1, we'll assume they're standing
-        } else {
+        } else
+        //If stand is chosen
+        {
             System.out.println("You stand.");
         }
     }

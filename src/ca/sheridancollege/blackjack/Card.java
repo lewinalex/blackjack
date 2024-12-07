@@ -8,6 +8,7 @@ package ca.sheridancollege.blackjack;
 
 public class Card {
 
+    // Card suits
     public enum Suit {
         HEARTS,
         DIAMONDS,
@@ -15,6 +16,7 @@ public class Card {
         CLUBS;
     }
 
+    //Cards with values
     public enum Value {
         ACE("Ace", 11),
         TWO("Two", 2),
@@ -47,9 +49,11 @@ public class Card {
             return cardName;
         }
     }
+
     private final Suit suit;
     private final Value value;
 
+    //Card constructor
     public Card(Suit suit, Value value) {
         this.suit = suit;
         this.value = value;
@@ -63,49 +67,16 @@ public class Card {
         return value;
     }
 
-    @Override
-    public String toString() {
-        return String.format("[%-5s of %-8s] (%2d)%n", value, suit, value.getCardValue());
-    }
-
+    //Card Constructor
     public Card(Card card) {
         this.suit = card.getSuit();
         this.value = card.getValue();
     }
 
-}
+    //String formatted for cards and their values
+    @Override
+    public String toString() {
+        return String.format("[%-5s of %-8s] (%2d)%n", value, suit, value.getCardValue());
+    }
 
-//    private Value value;
-//    private Suit suit;
-//
-//    public Card(Value value, Suit suit) {
-//        this.value = value;
-//        this.suit = suit;
-//    }
-//
-//    public Value getValue() {
-//        return this.value;
-//    }
-//
-//    /**
-//     *
-//     * @param value
-//     */
-//    public void setValue(Value value) {
-//        this.value = value;
-//    }
-//
-//    public Suit getSuit() {
-//        return this.suit;
-//    }
-//
-//    /**
-//     *
-//     * @param suit
-//     */
-//    public void setSuit(Suit suit) {
-//        this.suit = suit;
-//    }
-//
-//    @Override
-//    public abstract String toString();
+}

@@ -6,11 +6,9 @@ Availability: https://kevinsguides.com/guides/code/java/javaprojs/consoleblackja
  */
 package ca.sheridancollege.blackjack;
 
-public class Dealer extends Player {
+public class Dealer extends Participant {
 
-    /**
-     * Create a new Dealer
-     */
+    
     public Dealer() {
 
         //Name the dealer "Dealer"
@@ -18,6 +16,7 @@ public class Dealer extends Player {
 
     }
 
+    //Display first hand with only one card showing face up
     public void printFirstHand() {
         System.out.println("The dealer's hand looks like this:");
         System.out.print(super.getHand().getCard(0));

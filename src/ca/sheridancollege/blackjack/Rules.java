@@ -6,6 +6,7 @@ Availability: https://kevinsguides.com/guides/code/java/javaprojs/consoleblackja
  */
 package ca.sheridancollege.blackjack;
 
+//Class to keep rules to display to the user when requested in main menu
 public class Rules {
 
     public void displayRules() {

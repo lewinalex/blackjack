@@ -6,49 +6,28 @@ Availability: https://kevinsguides.com/guides/code/java/javaprojs/consoleblackja
  */
 package ca.sheridancollege.blackjack;
 
-/**
- *
- * @author alewi
- */
+//Use participant class as abstract class as dealer and player use similar commands
 public abstract class Participant {
 
-    private String participantID; //the unique ID for this participant
+    private String participantID;
 
-    /**
-     * A constructor that allows you to set the participant's unique ID
-     *
-     * @param name the unique ID to assign to this participant.
-     */
+    //A constructor that allows you to set the participant's unique ID
     public Participant(String name) {
         participantID = name;
     }
 
-    /**
-     * @return the participantID
-     */
     public String getParticipantID() {
         return participantID;
     }
 
-    /**
-     * Ensure that the participantID is unique
-     *
-     * @param givenID the participantID to set
-     */
     public void setParticipantID(String givenID) {
         participantID = givenID;
     }
 
-    /**
-     * The method to be instantiated when you subclass the Participant class with your specific type of Participant and
-     * filled in with logic to play your game.
-     */
     private Hand hand;
     private String name;
 
-    /**
-     * Create a new Person
-     */
+    //Create new participant
     public Participant() {
         this.hand = new Hand();
         this.name = "";
@@ -71,21 +50,19 @@ public abstract class Participant {
 
     }
 
+    //Check for blackjack in initial hand
     public boolean hasBlackjack() {
         return this.getHand().calculatedValue() == 21;
     }
 
+    //Print cards in hand and hand value
     public void printHand() {
         System.out.println(this.name + "'s hand looks like this:");
         System.out.println(this.hand + "Valued at: " + this.hand.calculatedValue() + "\n");
     }
 
+    //Add card to hand with hit
     public void hit(Deck deck, Deck discard) {
-
-        //If there's no cards left in the deck
-        if (!deck.hasCards()) {
-            deck.reloadDeckFromDiscard(discard);
-        }
         this.hand.takeCardFromDeck(deck);
         System.out.println(this.name + " gets a card");
         this.printHand();
