@@ -7,7 +7,6 @@ Availability: https://kevinsguides.com/guides/code/java/javaprojs/consoleblackja
 package ca.sheridancollege.blackjack;
 
 public class Card {
-sa
     // Card suits
     public enum Suit {
         HEARTS,
